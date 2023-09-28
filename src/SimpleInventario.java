@@ -14,15 +14,37 @@ public class SimpleInventario {
     }
 
     public static void ImprimiendoInventario() {
-    System.out.println("Ingrese una opción");
-    }
+        System.out.println("Ingrese una opción");
+        Scanner scanner = new Scanner(System.in);
+        String usuario = scanner.next();
+        System.out.println("Bienvenido" + usuario);
 
-    public static void main(String[] args) {
-     ImprimiendoInventario();
+        String articuloexistente = obtenerNombredeArticulo();
+        System.out.println("articuloexistente" + articuloexistente);
 
-    }
+
 
 }
+
+    public static void main(String[] args) { ImprimiendoInventario();
+
+    }
+
+    public static String obtenerNombredeArticulo() {
+        Scanner scanner = new Scanner(System.in);
+   System.out.println("Ingrese el nombre del articulo" );
+
+   String nombrearticulo;
+        nombrearticulo = scanner.next();
+    System.out.println("Usted ha ingresa un articulo" + nombrearticulo);
+
+    return nombrearticulo;
+
+    }
+
+
+
+    }
 
 
 
