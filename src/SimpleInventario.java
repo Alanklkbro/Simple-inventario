@@ -16,15 +16,29 @@ public class SimpleInventario {
         }
     }
 
-    public static String obtenerPrecioArticulo(String articulo, double precio) {
-        if (articulo.startsWith("mar") && precio >= 0.00) {
-            double random = (Math.random() * 4900) + 100;
-            return "Articulo " + articulo + " tiene un valor de RDS " + random;
-        } else if (articulo.startsWith("tab") || precio >= 12000.00) {
-            double random = (Math.random() * 4900) + 100;
-            return "Articulo " + articulo + " tiene un valor que sobrepasa 12,000.00. El monto es de RDS " + random;
-        } else {
-            return "Ninguno de los escenarios pudo aplicar";
+    public static double obtenerPrecioArticulo(String articulo) {
+        double random = (Math.random() * 4900) + 100;
+        return random;
+    }
+
+    public static void modificarArticulo() {
+        String nombrearticulo = obtenerNombredeArticulo();
+        if (nombrearticulo.startsWith("A") || nombrearticulo.toUpperCase().startsWith("D")) {
+            double precio = obtenerPrecioArticulo(nombrearticulo);
+            if (precio >= 150 && precio <= 250) {
+                precio *= 1.02;
+                System.out.println("El precio del artículo " + nombrearticulo + " ha sido actualizado a " + precio);
+            } else if (precio > 250 && precio <= 500) {
+                precio *= 1.08;
+                System.out.println("El precio del artículo " + nombrearticulo + " ha sido actualizado a " + precio);
+            } else if (precio > 500) {
+                precio *= 1.12;
+                System.out.println("El precio del artículo " + nombrearticulo + " ha sido actualizado a " + precio);
+            }
+        } else if (nombrearticulo.toUpperCase().startsWith("CO") || nombrearticulo.toUpperCase().startsWith("M")) {
+            double precio = obtenerPrecioArticulo(nombrearticulo);
+            precio *= 0.8;
+            System.out.println("El precio del artículo " + nombrearticulo + " ha sido actualizado a " + precio);
         }
     }
 
@@ -34,8 +48,7 @@ public class SimpleInventario {
         String usuario = scanner.next();
         System.out.println("Bienvenido " + usuario);
 
-        String articuloexistente = obtenerNombredeArticulo();
-        System.out.println("Artículo existente: " + articuloexistente);
+        modificarArticulo();
     }
 
     public static void main(String[] args) {
@@ -50,9 +63,7 @@ public class SimpleInventario {
             System.out.println("Usted ha ingresado un artículo " + nombrearticulo);
             return nombrearticulo;
         } else {
-            return "Error en operación!";
+            return "";
         }
     }
 }
-
-
